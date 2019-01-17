@@ -21,7 +21,10 @@ class ViewController: UIViewController {
 
     //User Actions: Events triggered by the user like clicking a button in this case
     @IBAction func showMessagePressed(_ sender: UIButton) {
-        messageLabel.text = "You are Awesome!"
+        messageLabel.text = "You Are Awesome!"
+    }
+    @IBAction func showAnotherMessagePressed(_ sender: UIButton) {
+        messageLabel.text = "You Are Great!"
     }
     
 }
