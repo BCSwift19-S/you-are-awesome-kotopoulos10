@@ -21,10 +21,16 @@ class ViewController: UIViewController {
 
     //User Actions: Events triggered by the user like clicking a button in this case
     @IBAction func showMessagePressed(_ sender: UIButton) {
-        messageLabel.text = "You Are Awesome!"
-    }
-    @IBAction func showAnotherMessagePressed(_ sender: UIButton) {
-        messageLabel.text = "You Are Great!"
+        if (messageLabel.text == "You Are Awesome!"){
+            messageLabel.text = "You Are Great!"
+            messageLabel.textColor = UIColor.red
+        }else if(messageLabel.text == "You Are Great!"){
+            messageLabel.text = "You Are Amazing!"
+            messageLabel.textColor = UIColor.blue
+        }else{
+            messageLabel.text = "You Are Awesome!"
+            messageLabel.textColor = UIColor.green
+        }
     }
     
 }
