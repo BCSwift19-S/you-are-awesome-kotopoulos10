@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var messageLabel: UILabel!
+    var index = 0
     
     
     //System Event: Code Below executes when the app's view first loads
@@ -21,16 +22,39 @@ class ViewController: UIViewController {
 
     //User Actions: Events triggered by the user like clicking a button in this case
     @IBAction func showMessagePressed(_ sender: UIButton) {
-        if (messageLabel.text == "You Are Awesome!"){
-            messageLabel.text = "You Are Great!"
-            messageLabel.textColor = UIColor.red
-        }else if(messageLabel.text == "You Are Great!"){
-            messageLabel.text = "You Are Amazing!"
-            messageLabel.textColor = UIColor.blue
+        
+        let messages = ["You Are Awesome!",
+                        "You Are Great!",
+                        "You Are Fantastic!",
+                        "When the Genius Bar needs help, they call you",
+                        "You Brighten My Day",
+                        "I am a programmer",
+                        "Hey, fabulous!",
+                        "You are tremendous",
+                        "You got the design skills of Jony Ive!",
+                        "I can't wait to download your app!"]
+        
+        messageLabel.text = messages[index]
+        if(index == messages.count-1){
+            index = 0
         }else{
-            messageLabel.text = "You Are Awesome!"
-            messageLabel.textColor = UIColor.green
+            index+=1
         }
+        
+//        let message1 = "You Are Awesome!"
+//        let message2 = "You Are Great!"
+//        let message3 = "You Are Amazing!"
+//
+//        if (messageLabel.text == message1){
+//            messageLabel.text = message2
+//            messageLabel.textColor = UIColor.red
+//        }else if(messageLabel.text == message2){
+//            messageLabel.text = message3
+//            messageLabel.textColor = UIColor.blue
+//        }else{
+//            messageLabel.text = message1
+//            messageLabel.textColor = UIColor.green
+//        }
     }
     
 }
