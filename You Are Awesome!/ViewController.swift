@@ -36,39 +36,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-    //User Actions: Events triggered by the user like clicking a button in this case
-    @IBAction func showMessagePressed(_ sender: UIButton) {
-        
-        
-        //Show a message
+    
+    func nonRepeatingRandom(lastNumber: Int,  maxValue: Int) -> Int {
         var newIndex: Int
         repeat{
-            newIndex = Int.random(in: 0..<messages.count)
-        }while index==newIndex
-        
-        index = newIndex
-        messageLabel.text = messages[index]
-        
-        
-        //Show a image
-        repeat{
-            newIndex = Int.random(in: 0..<numberOfImages)
-        } while imageIndex == newIndex
-        
-        imageIndex = newIndex
-        awesomeImageView.image = UIImage(named: "image\(newIndex)")
-        
-        
-        //Get a random sound
-        repeat{
-            newIndex = Int.random(in: 0..<numberOfSounds)
-        }while soundIndex==newIndex
-        
-        soundIndex = newIndex
-        //Play a sound
-        var soundName = "sound\(soundIndex)"
-        
+            newIndex = Int.random(in: 0..<maxValue)
+        }while lastNumber == newIndex
+        return newIndex
+    }
+    
+    //Play a sound
+    func playSound (soundName: String){
         //can we load in the file soundName
         if let sound = NSDataAsset(name: soundName){
             
@@ -76,13 +54,30 @@ class ViewController: UIViewController {
             do{
                 try awesomePlayer = AVAudioPlayer(data: sound.data)
                 awesomePlayer.play()
-            // catch error if sound.data isn't a sound file
+                // catch error if sound.data isn't a sound file
             } catch {
                 print("ERROR: The data in \(soundName) couldn't be loaded")
             }
         }else{
             print("ERROR: The file \(soundName) didn't load")
         }
+    }
+
+    //User Actions: Events triggered by the user like clicking a button in this case
+    @IBAction func showMessagePressed(_ sender: UIButton) {
+        
+        //Show a message
+        index = nonRepeatingRandom(lastNumber: index, maxValue: messages.count)
+        messageLabel.text = messages[index]
+        
+        //Show a image
+        imageIndex = nonRepeatingRandom(lastNumber: imageIndex, maxValue: numberOfImages)
+        awesomeImageView.image = UIImage(named: "image\(imageIndex)")
+        
+        //Get a random sound
+        soundIndex = nonRepeatingRandom(lastNumber: soundIndex, maxValue: numberOfSounds)
+        let soundName = "sound\(soundIndex)"
+        playSound(soundName: soundName)
         
     }
     
